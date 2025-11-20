@@ -3,59 +3,135 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Moindrot Enzo - Portfolio</title>
+  <title>Oxygène Fitness Andilly</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
     <div class="container">
-      <h1>Moindrot Enzo</h1>
-      <p>Trader à Dubaï & Formateur Dropshipping</p>
+      <img src="logo-oxygene.png" alt="Logo Oxygène Fitness" class="logo" />
+      <h1>Oxygène Fitness Andilly</h1>
+      <p>Votre salle de sport ouverte de 6h à 23h, 7j/7</p>
       <nav>
-        <a href="#formations">Formations</a>
-        <a href="#passions">Passions</a>
+        <a href="#horaires">Horaires & accès</a>
+        <a href="#planning">Planning cours co</a>
+        <a href="#coachs">Coachs</a>
+        <a href="#tarifs">Tarifs</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
 
-  <section id="formations" class="container">
-    <h2>Formations Dropshipping</h2>
-    <p>Je propose des formations complètes pour réussir dans le dropshipping, adaptées à tous les niveaux. Rejoignez-moi pour découvrir les stratégies qui fonctionnent et lancer votre business en ligne.</p>
-    <button onclick="showForm()">En savoir plus</button>
-    <div id="formationForm" style="display:none;">
-      <form>
-        <label for="email">Votre email :</label>
-        <input type="email" id="email" name="email" required>
-        <button type="submit">Recevoir les infos</button>
-      </form>
+  <section id="horaires" class="container">
+    <h2>Horaires & Accès</h2>
+    <p>
+      <strong>Adresse :</strong> 2 Rue de la République, 95580 Andilly<br>
+      <strong>Horaires :</strong> 6h - 23h, 7 jours sur 7
+    </p>
+    <iframe src="https://www.google.com/maps?q=Oxygene+Fitness+Andilly&output=embed" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+  </section>
+
+  <section id="planning" class="container">
+    <h2>Planning des cours collectifs</h2>
+    <table>
+      <tr>
+        <th>Jour</th>
+        <th>Cours</th>
+        <th>Heure</th>
+      </tr>
+      <tr>
+        <td>Lundi</td>
+        <td>Cardio Training</td>
+        <td>18h00 - 19h00</td>
+      </tr>
+      <tr>
+        <td>Mardi</td>
+        <td>Renfo Muscu</td>
+        <td>19h00 - 20h00</td>
+      </tr>
+      <tr>
+        <td>Mercredi</td>
+        <td>Yoga</td>
+        <td>10h30 - 11h30</td>
+      </tr>
+      <tr>
+        <td>Jeudi</td>
+        <td>HIIT</td>
+        <td>18h00 - 19h00</td>
+      </tr>
+      <tr>
+        <td>Vendredi</td>
+        <td>Zumba</td>
+        <td>18h30 - 19h30</td>
+      </tr>
+      <tr>
+        <td>Samedi</td>
+        <td>Cross Training</td>
+        <td>11h00 - 12h00</td>
+      </tr>
+    </table>
+    <!-- Tu peux adapter le planning ici -->
+  </section>
+
+  <section id="coachs" class="container">
+    <h2>Nos Coachs</h2>
+    <div class="coach-list">
+      <div class="coach">
+        <img src="coach1.jpg" alt="Coach 1" />
+        <h3>Alexandre Martin</h3>
+        <p>Spécialiste musculation & remise en forme</p>
+        <p>Coaching privé disponible</p>
+      </div>
+      <div class="coach">
+        <img src="coach2.jpg" alt="Coach 2" />
+        <h3>Sophie Durand</h3>
+        <p>Cardio, HIIT & cours collectifs</p>
+        <p>Coaching privé disponible</p>
+      </div>
+      <div class="coach">
+        <img src="coach3.jpg" alt="Coach 3" />
+        <h3>Kevin Leroy</h3>
+        <p>Yoga, stretching & nutrition</p>
+        <p>Coaching privé disponible</p>
+      </div>
     </div>
   </section>
 
-  <section id="passions" class="container">
-    <h2>Passion Voitures de Sport</h2>
-    <p>Amateur de sensations fortes, je partage ma passion pour les voitures de sport, les plus beaux modèles et les dernières nouveautés du monde automobile.</p>
-    <div class="car-gallery">
-      <img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=400&q=80" alt="Voiture de sport 1">
-      <img src="https://images.pexels.com/photos/358070/pexels-photo-358070.jpeg?auto=compress&w=400&q=80" alt="Voiture de sport 2">
-     <img src="https://images.unsplash.com/photo-1542362567-b07e5a75d2ee?auto=format&fit=crop&w=400&q=80" alt="Abarth noire">
-    </div>
+  <section id="tarifs" class="container">
+    <h2>Tarifs</h2>
+    <ul>
+      <li><strong>Abonnement mensuel :</strong> 39€/mois - Accès libre à la salle</li>
+      <li><strong>Accès illimité + cours collectifs :</strong> 49€/mois</li>
+      <li><strong>Coaching privé / séance :</strong> 35€</li>
+      <li><strong>Pack découverte 1 semaine :</strong> 15€</li>
+      <!-- Adapte ici selon ta grille de tarifs -->
+    </ul>
   </section>
 
   <section id="contact" class="container">
     <h2>Contact & Réseaux</h2>
-    <p>Retrouvez-moi sur mes réseaux pour des conseils exclusifs et suivre mon parcours.</p>
+    <p>Besoin d’informations ou envie de visiter la salle ? Contactez-nous !</p>
+    <form>
+      <label for="email">Votre email :</label>
+      <input type="email" id="email" name="email" required>
+      <label for="message">Message :</label>
+      <textarea id="message" name="message" required></textarea>
+      <button type="submit">Envoyer</button>
+    </form>
     <div class="social-links">
-      <a href="https://www.linkedin.com/" target="_blank" class="linkedin">LinkedIn</a>
       <a href="https://www.instagram.com/" target="_blank" class="instagram">Instagram</a>
+      <a href="https://www.facebook.com/" target="_blank" class="facebook">Facebook</a>
     </div>
+    <p><strong>Téléphone :</strong> 06 12 34 56 78</p>
   </section>
 
   <footer>
     <div class="container">
-      <p>&copy; 2025 Moindrot Enzo. Tous droits réservés.</p>
+      <p>&copy; 2025 Oxygène Fitness Andilly. Tous droits réservés.</p>
     </div>
   </footer>
-  <script src="script.js"></script>
+  <script>
+    // Tu peux ajouter ici les interactions JS pour afficher/masquer le planning, le formulaire, etc.
+  </script>
 </body>
 </html>
