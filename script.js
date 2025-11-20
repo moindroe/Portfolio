@@ -28,6 +28,3 @@ if (contactForm) {
     }
   });
 }
-
-// Popup messages pour boutons abonnements et réservations (déjà présents via le HTML "onclick")
-// Si tu veux remplacer l'alerte par une vraie modale, te le dis !
