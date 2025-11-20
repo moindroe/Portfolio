@@ -1,22 +1,33 @@
-// Afficher/cacher le formulaire de formation
-function showForm() {
-  var form = document.getElementById('formationForm');
-  if (form.style.display === "none") {
-    form.style.display = "block";
-  } else {
-    form.style.display = "none";
-  }
+// Scroll fluide navigation
+document.querySelectorAll('nav a').forEach(link => {
+  link.addEventListener('click', function(e) {
+    const targetID = this.getAttribute('href');
+    if (targetID.startsWith('#')) {
+      e.preventDefault();
+      const targetSection = document.querySelector(targetID);
+      if (targetSection) {
+        window.scrollTo({
+          top: targetSection.offsetTop - 30,
+          behavior: 'smooth'
+        });
+      }
+    }
+  });
+});
+
+// Confirmation et reset formulaire contact
+const contactForm = document.querySelector('section#contact form');
+if (contactForm) {
+  contactForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = contactForm.querySelector('[name="email"]').value;
+    const msg = contactForm.querySelector('[name="message"]').value;
+    if (email && msg) {
+      contactForm.innerHTML =
+        `<div class="form-confirm"><strong>Merci&nbsp;!</strong> Votre message a bien été envoyé.<br>Nous vous répondrons rapidement.</div>`;
+    }
+  });
 }
 
-// Empêche la soumission réelle et affiche un message
-document.addEventListener('DOMContentLoaded', function () {
-  var form = document.querySelector('#formationForm form');
-  if (form) {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      alert('Merci ! Vous recevrez bientôt les infos sur la formation.');
-      form.reset();
-      document.getElementById('formationForm').style.display = "none";
-    });
-  }
-});
+// Popup messages pour boutons abonnements et réservations (déjà présents via le HTML "onclick")
+// Si tu veux remplacer l'alerte par une vraie modale, te le dis !
