@@ -1,296 +1,219 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
 
-:root {
+:root{
   --primary: #00b5ff;
   --primary-dark: #007eb8;
   --bg-light: #f6f6f6;
   --bg-white: #fff;
   --text-main: #222;
-  --text-title: #00b5ff;
   --text-footer: #fff;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
+/* Reset / base */
+*{ box-sizing: border-box; margin: 0; padding: 0; }
+body{
   font-family: 'Montserrat', Arial, sans-serif;
   background: var(--bg-light);
   color: var(--text-main);
   min-height: 100vh;
 }
-
-.container {
+.container{
   width: 90%;
   max-width: 1100px;
   margin: 0 auto;
-  padding: 40px 0 24px 0;
+  padding: 20px 0;
 }
 
-header {
+/* HEADER */
+header{
   background: var(--bg-white);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
   position: sticky;
   top: 0;
   z-index: 100;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
 }
 
-.logo {
-  width: 110px;
-  margin-bottom: 10px;
-}
-
-header h1 {
-  color: var(--primary);
-  font-size: 2.25rem;
-  font-weight: 700;
-  margin-bottom: 8px;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.1);
-}
-
-header p {
-  font-size: 1.1rem;
-  color: var(--primary-dark);
-  margin-bottom: 18px;
-}
-
-nav {
+/* header-inner : logo à gauche, texte à droite */
+.header-inner{
   display: flex;
-  gap: 26px;
-  justify-content: center;
-  margin-bottom: 6px;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 0;
 }
 
-nav a {
+/* Logo plus grand et positionné à gauche */
+.logo{
+  width: 150px;              /* agrandi */
+  height: auto;
+  display: block;
+  margin-right: 12px;
+}
+
+/* Texte à droite du logo */
+.brand {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+.brand h1{
+  font-size: 1.9rem;
+  color: var(--primary);
+  font-weight: 700;
+  line-height: 1;
+}
+.brand .subtitle{
+  color: var(--primary-dark);
+  font-size: 1rem;
+  margin-top: 6px;
+}
+
+/* Force le nav à se placer sous l'entête principal (reste centré) */
+.main-nav{
+  display: flex;
+  gap: 22px;
+  justify-content: center;
+  padding: 12px 0 16px 0;
+}
+.main-nav a{
   color: var(--primary-dark);
   font-weight: 600;
   text-decoration: none;
-  font-size: 1.1rem;
-  padding: 7px 14px;
+  font-size: 1rem;
+  padding: 8px 14px;
   border-radius: 20px;
-  transition: background .2s, color .2s;
+  transition: background .18s, color .18s;
 }
-
-nav a:hover,
-nav a.active {
+.main-nav a:hover, .main-nav a.active{
   background: var(--primary);
   color: var(--bg-white);
 }
 
-section {
+/* SECTIONS */
+.section{
   background: var(--bg-white);
   border-radius: 12px;
   box-shadow: 0 1px 8px rgba(0,0,0,0.05);
-  margin-bottom: 36px;
+  margin: 26px 0;
+  padding: 20px;
 }
-
-section h2 {
+.section h2{
   color: var(--primary);
-  font-size: 1.6rem;
-  margin-bottom: 20px;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
-section p,
-section ul {
-  font-size: 1.08rem;
+  font-size: 1.5rem;
   margin-bottom: 14px;
+  font-weight: 700;
 }
 
-iframe {
+/* images preview */
+/* Reduced max-width to take less space on page; constrained height to avoid very tall images */
+.preview-img{
+  width: 100%;
+  max-width: 600px;           /* reduced from 800px to 600px */
+  height: auto;
+  display: block;
+  margin: 8px auto 0 auto;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+  object-fit: contain;        /* preserve aspect ratio */
+  max-height: 420px;         /* limit height so it doesn't dominate the page */
 }
 
-#planning img,
-#tarifs img {
-  box-shadow: 0 6px 32px rgba(0,0,0,0.08);
-  border-radius: 14px;
-  background: var(--bg-white);
-  margin-bottom: 2px;
-}
+/* If you prefer an even smaller planning image, add a .small-preview class in HTML */
+/* .small-preview{ max-width:480px; max-height:360px; } */
 
-/* Bouton principal */
-.btn-main {
+/* Boutons */
+.center{ text-align:center; margin-top:14px; }
+.btn-main{
   background: var(--primary);
   color: var(--text-footer);
   font-weight: 700;
-  font-size: 1.17rem;
-  padding: 13px 42px;
-  border-radius: 40px;
+  font-size: 1.05rem;
+  padding: 12px 36px;
+  border-radius: 36px;
   border: none;
-  box-shadow: 0 2px 18px rgba(0,181,255,0.12);
-  margin: 7px 0;
   cursor: pointer;
-  letter-spacing: 1px;
-  transition: background .18s, transform .14s, box-shadow .19s;
+  transition: transform .14s, background .14s;
+  box-shadow: 0 6px 20px rgba(0,181,255,0.12);
 }
-.btn-main:hover {
-  background: var(--primary-dark);
-  transform: scale(1.04);
-  box-shadow: 0 4px 30px rgba(0,181,255,0.16);
-}
+.btn-main:hover{ transform: translateY(-3px); background: var(--primary-dark); }
 
-/* Coachs grid */
-.coach-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 32px;
-  justify-content: center;
+/* Coachs */
+.coach-list{
+  display:flex;
+  gap: 28px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-top:8px;
 }
-
-.coach {
+.coach{
   background: var(--bg-light);
-  border-radius: 14px;
-  padding: 18px 8px 16px 8px;
-  box-shadow: 0 2px 16px rgba(0,176,255,0.08);
+  border-radius: 12px;
+  padding: 14px;
+  width: 220px;
+  text-align:center;
   transition: transform .18s, box-shadow .18s;
-  max-width: 220px;
-  text-align: center;
-  margin-bottom: 8px;
 }
-
-.coach img {
+.coach img{
   width: 120px;
   height: 120px;
-  border-radius: 50%;
   object-fit: cover;
+  border-radius: 50%;
   border: 3px solid var(--primary);
-  margin-bottom: 15px;
-  transition: box-shadow .2s;
-  box-shadow: 0 2px 18px rgba(0,181,255,0.10);
-}
-.coach:hover {
-  transform: translateY(-7px) scale(1.04);
-  box-shadow: 0 4px 35px rgba(0,181,255,0.18);
-  background: var(--primary);
-  color: var(--text-footer);
-}
-.coach:hover img {
-  border-color: var(--bg-white);
-  box-shadow: 0 2px 28px rgba(0,181,255,0.18);
-}
-.coach h3 {
   margin-bottom: 10px;
-  color: var(--primary-dark);
-  font-weight: 600;
-  font-size: 1.18rem;
-  letter-spacing: 0.5px;
 }
-.coach p {
-  font-size: 1rem;
-}
+.coach h3{ color: var(--primary-dark); margin-bottom:6px; font-size:1.05rem; }
+.coach p{ font-size:0.98rem; margin-bottom:6px; }
 
-ul {
-  padding-left: 18px;
-}
-
-ul li {
-  margin-bottom: 7px;
-}
-
-form {
+/* Contact form */
+.contact-form{
   background: var(--bg-light);
+  padding: 16px;
   border-radius: 10px;
-  padding: 22px 18px 18px 18px;
-  max-width: 400px;
-  box-shadow: 0 1px 10px rgba(65,194,255,0.11);
-  margin-bottom: 14px;
+  max-width: 540px;
+  box-shadow: 0 4px 18px rgba(0,181,255,0.06);
 }
-
-label {
-  display: block;
-  font-weight: 600;
-  color: var(--primary-dark);
-  margin-bottom: 3px;
-}
-
-input[type="email"],
-textarea {
-  width: 100%;
-  padding: 7px 8px;
-  font-size: 1.07rem;
-  border: 1px solid #c5eaff;
-  border-radius: 7px;
-  margin-bottom: 14px;
+.contact-form label{ display:block; font-weight:600; color:var(--primary-dark); margin-top:8px; margin-bottom:6px; }
+.contact-form input,
+.contact-form textarea{
+  width:100%;
+  padding:8px 10px;
+  border-radius:8px;
+  border:1px solid #cdefff;
   background: #f7fcff;
-  resize: vertical;
 }
-
-button[type="submit"] {
-  background: var(--primary);
-  color: var(--bg-white);
-  padding: 9px 22px;
-  border: none;
-  border-radius: 26px;
-  font-size: 1.11rem;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,181,255,0.08);
-  transition: background .2s;
-}
-
-button[type="submit"]:hover {
-  background: var(--primary-dark);
+.btn-submit{
+  margin-top:10px;
+  background:var(--primary); color:#fff; padding:10px 18px; border-radius:8px; border:none; font-weight:700;
 }
 
 /* Social links */
-.social-links {
-  display: flex;
-  gap: 18px;
-  margin: 7px 0;
-}
-.social-links a {
-  display: inline-block;
-  padding: 7px 22px;
-  border-radius: 20px;
-  background: var(--primary);
-  color: var(--bg-white);
-  font-weight: 600;
-  text-decoration: none;
-  font-size: 1.1rem;
-  transition: background .19s;
-}
-.social-links a.instagram { background: #e4405f; }
-.social-links a.facebook { background: #1877f3; }
-.social-links a:hover { filter: brightness(0.95); }
+.social-links{ margin-top:14px; display:flex; gap:12px; }
+.social-links a{ padding:8px 14px; border-radius:8px; color:#fff; text-decoration:none; font-weight:700; }
+.social-links .instagram{ background:#e4405f; }
+.social-links .facebook{ background:#1877f3; }
 
-footer {
-  background: var(--primary-dark);
-  color: var(--text-footer);
-  padding: 22px 0;
-}
+/* Footer */
+.site-footer{ background:var(--primary-dark); color:var(--text-footer); padding:14px 0; margin-top:18px; }
+.site-footer p{ text-align:center; opacity:0.95; }
 
-footer p {
-  text-align: center;
-  font-size: 1rem;
-  opacity: 0.92;
-  letter-spacing: 0.6px;
-  font-weight: 500;
-}
+/* Modal (simple) */
+.modal-overlay{ position:fixed; inset:0; background:rgba(0,0,0,0.45); display:none; align-items:center; justify-content:center; padding:20px; }
+.modal-overlay.active{ display:flex; }
+.modal{ background:#fff; border-radius:10px; max-width:520px; width:100%; padding:18px; position:relative; box-shadow:0 10px 30px rgba(0,0,0,0.25); }
+.modal-close{ position:absolute; right:12px; top:10px; background:transparent; border:none; font-size:20px; cursor:pointer; }
 
-/* Responsive */
-@media (max-width: 980px) {
-  .container {
-    width: 98%;
-    padding-top: 26px;
-  }
-  .coach-list { gap: 18px; }
-  nav { gap: 14px; }
+/* Responsive adjustments */
+@media (max-width: 900px){
+  .logo{ width: 120px; }
+  .brand h1{ font-size:1.6rem; }
+  .main-nav{ gap:14px; flex-wrap:wrap; }
+  .preview-img{ max-width:520px; max-height:380px; } /* slightly smaller on medium screens */
 }
-
-@media (max-width: 650px) {
-  .coach-list { flex-direction: column; align-items: center; }
-  .container { width: 99%; }
-  section { padding: 22px 6px 14px 6px; }
-  header h1 { font-size: 1.7rem; }
-}
-
-@media (max-width: 420px) {
-  .logo { width: 74px; }
-  section h2 { font-size: 1.1rem; }
+@media (max-width: 600px){
+  .header-inner{ flex-direction:row; gap:12px; align-items:center; }
+  .logo{ width: 92px; }
+  .brand h1{ font-size:1.2rem; }
+  .brand .subtitle{ font-size:0.95rem; }
+  .main-nav{ padding-bottom:8px; }
+  .preview-img{ max-width:92%; max-height:320px; } /* mobile friendly */
 }
