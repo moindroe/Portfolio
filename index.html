@@ -9,22 +9,45 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Small CSS additions to ensure the mute button displays even if style.css wasn't updated -->
+  <style>
+    /* mute/unmute button in the hero (if not present in your style.css) */
+    .hero-mute{
+      position: absolute;
+      right: 18px;
+      top: 18px;
+      z-index: 40;
+      background: rgba(0,0,0,0.45);
+      color: #fff;
+      border: none;
+      padding: 8px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      backdrop-filter: blur(4px);
+    }
+    .hero-mute:hover{ background: rgba(0,0,0,0.6); }
+    /* hide fallback image by default; JS will toggle display */
+    #heroFallback{ display: none; }
+  </style>
 </head>
 <body>
   <!-- HERO header with video background + logo + site name -->
   <header class="hero-header">
     <div class="hero-media" aria-hidden="true">
-      <!-- Place your video at images/hero-video.mp4 (mp4 H.264 recommended) -->
+      <!-- Put your video at images/hero-video.mp4 (recommended) -->
       <video id="heroVideo" class="hero-video" autoplay muted loop playsinline preload="auto" poster="images/hero-image.jpg">
         <source src="images/hero-video.mp4" type="video/mp4">
-        <!-- if video not supported, poster/fallback image displays -->
+        <source src="images/hero-video.webm" type="video/webm">
+        <!-- If video not supported, the poster/fallback image will show -->
       </video>
 
-      <!-- Fallback image (shown if video hidden/unavailable) -->
+      <!-- Fallback image (displayed if video is hidden/unavailable) -->
       <img id="heroFallback" class="hero-fallback" src="images/hero-image.jpg" alt="Oxygène Fitness - Salle" />
 
       <!-- overlay for blue/black sporty tint -->
-      <div class="hero-overlay"></div>
+      <div class="hero-overlay" aria-hidden="true"></div>
     </div>
 
     <div class="container header-inner hero-content">
@@ -34,6 +57,9 @@
         <p class="subtitle">Andilly — Ouvert 6h à 23h, 7j/7</p>
       </div>
       <div class="header-spacer"></div>
+
+      <!-- Mute/unmute button for the hero video -->
+      <button id="heroMuteBtn" class="hero-mute" aria-label="Activer son">🔈</button>
     </div>
 
     <nav class="main-nav container hero-nav">
@@ -152,6 +178,70 @@
     </div>
   </div>
 
+  <!-- Inline script to handle hero video fallback and mute button -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const heroVideo = document.getElementById('heroVideo');
+      const heroFallback = document.getElementById('heroFallback');
+      const heroMuteBtn = document.getElementById('heroMuteBtn');
+
+      function isSmallScreen() {
+        return window.innerWidth <= 560;
+      }
+
+      // If small screen, prefer image fallback to save bandwidth and avoid autoplay issues
+      if (isSmallScreen()) {
+        if (heroVideo) heroVideo.style.display = 'none';
+        if (heroFallback) heroFallback.style.display = 'block';
+      } else {
+        // Try to play the video and fallback on error or rejection
+        if (heroVideo) {
+          // hide fallback if present
+          if (heroFallback) heroFallback.style.display = 'none';
+
+          // try play (some browsers may refuse; catch to fallback)
+          heroVideo.play().catch(() => {
+            heroVideo.style.display = 'none';
+            if (heroFallback) heroFallback.style.display = 'block';
+          });
+
+          // ensure fallback displayed on video error
+          heroVideo.addEventListener('error', () => {
+            heroVideo.style.display = 'none';
+            if (heroFallback) heroFallback.style.display = 'block';
+          });
+        } else {
+          if (heroFallback) heroFallback.style.display = 'block';
+        }
+
+        // Mute/unmute button behavior
+        if (heroMuteBtn && heroVideo) {
+          // init icon
+          heroMuteBtn.textContent = heroVideo.muted ? '🔈' : '🔊';
+          heroMuteBtn.setAttribute('aria-label', heroVideo.muted ? 'Activer son' : 'Couper le son');
+
+          heroMuteBtn.addEventListener('click', () => {
+            heroVideo.muted = !heroVideo.muted;
+            heroMuteBtn.textContent = heroVideo.muted ? '🔈' : '🔊';
+            heroMuteBtn.setAttribute('aria-label', heroVideo.muted ? 'Activer son' : 'Couper le son');
+          });
+        }
+      }
+
+      // Optional: if user resizes (switching between small/large), adjust display
+      window.addEventListener('resize', () => {
+        if (isSmallScreen()) {
+          if (heroVideo) heroVideo.style.display = 'none';
+          if (heroFallback) heroFallback.style.display = 'block';
+        } else {
+          if (heroVideo) heroVideo.style.display = 'block';
+          if (heroFallback) heroFallback.style.display = 'none';
+        }
+      });
+    });
+  </script>
+
+  <!-- your existing main script (keeps modal, scroll, gallery behavior) -->
   <script src="script.js"></script>
 </body>
 </html>
