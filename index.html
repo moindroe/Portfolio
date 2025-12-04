@@ -1,39 +1,38 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Oxygène Fitness Andilly</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
     <div class="container header-inner">
-      <!-- Logo à gauche -->
       <img src="logo-oxygene.png" alt="Logo Oxygène Fitness" class="logo" />
-
-      <!-- Texte (titre + sous-titre) à droite du logo -->
       <div class="brand">
         <h1>Oxygène Fitness</h1>
         <p class="subtitle">Andilly — Ouvert 6h à 23h, 7j/7</p>
       </div>
-
-      <!-- espace flexible pour pousser le nav en dessous sur large écran -->
       <div class="header-spacer"></div>
     </div>
 
-    <!-- Navigation principale (sous le header, centrée) -->
     <nav class="main-nav container">
       <a href="#horaires">Horaires & accès</a>
-      <a href="#planning">Planning cours co</a>
+      <a href="#planning">Planning</a>
       <a href="#coachs">Coachs</a>
+      <a href="#gallery">La salle</a>
       <a href="#tarifs">Tarifs</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
   <main>
-    <section id="horaires" class="container section">
+    <section id="horaires" class="container section reveal">
       <h2>Horaires & Accès</h2>
       <p>
         <strong>Adresse :</strong> 10 Avenue des Cures, 95580 Andilly<br />
@@ -42,73 +41,61 @@
       </p>
       <iframe
         src="https://www.google.com/maps?q=10+Avenue+des+Cures,+Andilly&output=embed"
-        width="100%"
-        height="260"
-        allowfullscreen=""
-        loading="lazy"
-      ></iframe>
+        width="100%" height="260" allowfullscreen="" loading="lazy"></iframe>
     </section>
 
-    <section id="planning" class="container section">
+    <section id="planning" class="container section reveal">
       <h2>Planning des cours collectifs</h2>
-      <img
-        src="planning-cours-co.png"
-        alt="Planning des cours collectifs Oxygène Fitness"
-        class="preview-img"
-      />
+      <img src="planning-cours-co.png" alt="Planning des cours collectifs Oxygène Fitness" class="preview-img" loading="lazy" />
       <div class="center">
-        <button class="btn-main" data-action="open-modal" data-type="reservation">
-          Réserver un cours collectif
-        </button>
+        <button class="btn-main" data-action="open-modal" data-type="reservation">Réserver un cours collectif</button>
       </div>
     </section>
 
-    <section id="coachs" class="container section">
+    <section id="coachs" class="container section reveal">
       <h2>Nos Coachs</h2>
       <div class="coach-list">
         <div class="coach">
-          <img
-            src="romain-coach.png"
-            alt="Romain coach Oxygène Fitness"
-          />
+          <img src="https://images.pexels.com/photos/1139825/pexels-photo-1139825.jpeg?auto=compress&w=600&q=80" alt="Romain coach" loading="lazy" />
           <h3>Romain</h3>
           <p>Boxe, Cross Training, Prépa physique</p>
-          <p>Coaching privé disponible</p>
         </div>
-
         <div class="coach">
-          <img
-            src="fanny-coach.png"
-            alt="Fanny coach Oxygène Fitness"
-          />
+          <img src="https://images.pexels.com/photos/3768914/pexels-photo-3768914.jpeg?auto=compress&w=600&q=80" alt="Fanny coach" loading="lazy" />
           <h3>Fanny</h3>
           <p>Cardio, Pilates, Santé articulaire</p>
-          <p>Coaching privé disponible</p>
         </div>
-
         <div class="coach">
-          <img
-            src="kilian-coach.png"
-            alt="Kilian coach Oxygène Fitness"
-          />
+          <img src="https://images.pexels.com/photos/2261485/pexels-photo-2261485.jpeg?auto=compress&w=600&q=80" alt="Kilian coach" loading="lazy" />
           <h3>Kilian</h3>
           <p>Musculation, Circuit training</p>
-          <p>Coaching privé disponible</p>
         </div>
       </div>
     </section>
 
-    <section id="tarifs" class="container section">
-      <h2>Tarifs</h2>
-      <img src="tarifs.png" alt="Tarifs Oxygène Fitness" class="preview-img" />
-      <div class="center">
-        <button class="btn-main" data-action="open-modal" data-type="abonnement">
-          Prendre un abonnement
-        </button>
+    <section id="gallery" class="container section reveal">
+      <h2>La salle — Galerie</h2>
+      <p>Quelques photos de la salle pour vous donner envie. Clique sur une image pour l’agrandir.</p>
+      <div class="gallery-grid">
+        <!--  Place tes fichiers d'images dans images/gallery1.jpg ... gallery6.jpg -->
+        <img src="images/gallery1.jpg" alt="Salle 1" class="gallery-item" loading="lazy" />
+        <img src="images/gallery2.jpg" alt="Salle 2" class="gallery-item" loading="lazy" />
+        <img src="images/gallery3.jpg" alt="Salle 3" class="gallery-item" loading="lazy" />
+        <img src="images/gallery4.jpg" alt="Salle 4" class="gallery-item" loading="lazy" />
+        <img src="images/gallery5.jpg" alt="Salle 5" class="gallery-item" loading="lazy" />
+        <img src="images/gallery6.jpg" alt="Salle 6" class="gallery-item" loading="lazy" />
       </div>
     </section>
 
-    <section id="contact" class="container section">
+    <section id="tarifs" class="container section reveal">
+      <h2>Tarifs</h2>
+      <img src="tarifs.png" alt="Tarifs Oxygène Fitness" class="preview-img" loading="lazy" />
+      <div class="center">
+        <button class="btn-main" data-action="open-modal" data-type="abonnement">Prendre un abonnement</button>
+      </div>
+    </section>
+
+    <section id="contact" class="container section reveal">
       <h2>Contact & Réseaux</h2>
       <p>Besoin d'informations ou envie de visiter la salle ? Contactez-nous !</p>
 
@@ -142,9 +129,15 @@
   <div id="modalOverlay" class="modal-overlay" aria-hidden="true">
     <div class="modal">
       <button class="modal-close" aria-label="Fermer">✕</button>
-      <div id="modalContent">
-        <!-- Content injected by JS -->
-      </div>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <!-- Lightbox modal for gallery -->
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <div class="lightbox-inner">
+      <button class="lightbox-close" aria-label="Fermer">✕</button>
+      <img id="lightboxImg" src="" alt="Agrandissement" />
     </div>
   </div>
 
