@@ -1,39 +1,18 @@
-// script.js - hero video fallback + precise scroll + reveal + modal + lightbox + contact form
+// script.js - precise scroll, reveal, modal, lightbox, contact form, and hero-image animation kickoff
 document.addEventListener('DOMContentLoaded', () => {
   const header = document.querySelector('.hero-header') || document.querySelector('header');
   const navLinks = document.querySelectorAll('.main-nav a, .hero-nav a');
   const sections = document.querySelectorAll('main section[id]');
   const reveals = document.querySelectorAll('.reveal');
 
-  // HERO: video vs fallback logic
-  const heroVideo = document.getElementById('heroVideo');
-  const heroFallback = document.getElementById('heroFallback');
-
-  function supportsAutoplay() {
-    // simple heuristic: skip autoplay on small screens to save mobile bandwidth
-    return window.innerWidth > 560;
-  }
-
-  if (heroVideo) {
-    if (!supportsAutoplay()) {
-      heroVideo.style.display = 'none';
-      if (heroFallback) heroFallback.style.display = 'block';
-    } else {
-      // hide fallback initially (if exists)
-      if (heroFallback) heroFallback.style.display = 'none';
-      // if video errors, show fallback
-      heroVideo.addEventListener('error', () => {
-        heroVideo.style.display = 'none';
-        if (heroFallback) heroFallback.style.display = 'block';
-      });
-      // try to play - some browsers block autoplay if not muted, but it's muted here
-      heroVideo.play().catch(() => {
-        heroVideo.style.display = 'none';
-        if (heroFallback) heroFallback.style.display = 'block';
-      });
-    }
-  } else {
-    if (heroFallback) heroFallback.style.display = 'block';
+  // Add slow zoom class to hero image (Ken Burns effect)
+  const heroImage = document.getElementById('heroImage');
+  if (heroImage) {
+    // start zoom after short delay for smoother effect
+    setTimeout(() => heroImage.classList.add('zoom-in'), 250);
+    // Optional: loop zoom in/out by toggling classes (commented out by default)
+    // let zoomToggle = true;
+    // setInterval(() => { heroImage.classList.toggle('zoom-in'); zoomToggle = !zoomToggle; }, 12000);
   }
 
   // compute header height for scroll offset
