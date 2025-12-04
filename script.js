@@ -1,19 +1,50 @@
-// Smooth scroll using header height dynamically, highlight active nav, reveal animations, gallery lightbox, modal handling
-
+// script.js - hero video fallback + precise scroll + reveal + modal + lightbox + contact form
 document.addEventListener('DOMContentLoaded', () => {
-  const header = document.querySelector('header');
-  const navLinks = document.querySelectorAll('.main-nav a');
+  const header = document.querySelector('.hero-header') || document.querySelector('header');
+  const navLinks = document.querySelectorAll('.main-nav a, .hero-nav a');
   const sections = document.querySelectorAll('main section[id]');
   const reveals = document.querySelectorAll('.reveal');
 
+  // HERO: video vs fallback logic
+  const heroVideo = document.getElementById('heroVideo');
+  const heroFallback = document.getElementById('heroFallback');
+
+  function supportsAutoplay() {
+    // simple heuristic: skip autoplay on small screens to save mobile bandwidth
+    return window.innerWidth > 560;
+  }
+
+  if (heroVideo) {
+    if (!supportsAutoplay()) {
+      heroVideo.style.display = 'none';
+      if (heroFallback) heroFallback.style.display = 'block';
+    } else {
+      // hide fallback initially (if exists)
+      if (heroFallback) heroFallback.style.display = 'none';
+      // if video errors, show fallback
+      heroVideo.addEventListener('error', () => {
+        heroVideo.style.display = 'none';
+        if (heroFallback) heroFallback.style.display = 'block';
+      });
+      // try to play - some browsers block autoplay if not muted, but it's muted here
+      heroVideo.play().catch(() => {
+        heroVideo.style.display = 'none';
+        if (heroFallback) heroFallback.style.display = 'block';
+      });
+    }
+  } else {
+    if (heroFallback) heroFallback.style.display = 'block';
+  }
+
+  // compute header height for scroll offset
   function getHeaderHeight() {
     return header ? header.offsetHeight : 110;
   }
 
-  // Smooth scroll on nav click using computed header height
+  // smooth scroll with header offset
   navLinks.forEach(link => {
-    link.addEventListener('click', e => {
-      const href = link.getAttribute('href');
+    link.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
       if (href && href.startsWith('#')) {
         e.preventDefault();
         const target = document.querySelector(href);
@@ -25,31 +56,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // IntersectionObserver to highlight active nav link and reveal sections
-  const obsOptions = { root: null, rootMargin: `-${Math.round(getHeaderHeight()/2)}px 0px -40% 0px`, threshold: 0.15 };
+  // IntersectionObserver for active nav
   const sectionObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       const id = entry.target.id;
-      const navLink = document.querySelector(`.main-nav a[href="#${id}"]`);
+      const activeLink = document.querySelector(`.main-nav a[href="#${id}"], .hero-nav a[href="#${id}"]`);
       if (entry.isIntersecting) {
-        navLinks.forEach(n => n.classList.remove('active'));
-        if (navLink) navLink.classList.add('active');
+        document.querySelectorAll('.main-nav a, .hero-nav a').forEach(a => a.classList.remove('active'));
+        if (activeLink) activeLink.classList.add('active');
       }
     });
-  }, obsOptions);
+  }, { root: null, threshold: 0.18 });
 
   sections.forEach(s => sectionObserver.observe(s));
 
-  // Reveal animations when entering viewport
+  // Reveal on scroll
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) entry.target.classList.add('in-view');
     });
   }, { threshold: 0.12 });
-
   reveals.forEach(r => revealObserver.observe(r));
 
-  // Modal (reservation / abonnement)
+  // Modal handling (reservation / abonnement)
   const modalOverlay = document.getElementById('modalOverlay');
   const modalContent = document.getElementById('modalContent');
   const modalClose = document.querySelector('.modal-close');
@@ -60,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (type === 'reservation') {
       modalContent.innerHTML = `
         <h3>Réserver un cours collectif</h3>
-        <p>Pour réserver maintenant, contacte-nous au <strong>01 39 59 15 48</strong> ou passe en accueil. Réservation en ligne bientôt disponible.</p>
+        <p>Pour réserver maintenant, contacte-nous au <strong>01 39 59 15 48</strong> ou passe à l'accueil. Réservation en ligne bientôt disponible.</p>
         <div style="text-align:right;margin-top:12px;"><button class="btn-main" id="closeModalBtn">Fermer</button></div>
       `;
     } else {
@@ -84,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (modalClose) modalClose.addEventListener('click', closeModal);
   if (modalOverlay) modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) closeModal(); });
 
-  // Contact form behaviour
+  // Contact form
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
@@ -122,17 +151,15 @@ document.addEventListener('DOMContentLoaded', () => {
   if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
   if (lightbox) lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
 
-  // Update scroll-margin-top CSS variable for accurate anchor placement
-  const updateHeaderHeightVar = () => {
+  // Update CSS var for header height for accurate anchors
+  const updateHeaderHeight = () => {
     const h = getHeaderHeight();
     document.documentElement.style.setProperty('--header-height', `${h}px`);
   };
-  updateHeaderHeightVar();
-  window.addEventListener('resize', () => {
-    updateHeaderHeightVar();
-  });
+  updateHeaderHeight();
+  window.addEventListener('resize', updateHeaderHeight);
 
-  // Keyboard escape closes modals/lightbox
+  // close ESC
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       closeModal(); closeLightbox();
