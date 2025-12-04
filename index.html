@@ -1,99 +1,146 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>Oxygène Fitness Andilly</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <div class="container">
+    <div class="container header-inner">
       <img src="logo-oxygene.png" alt="Logo Oxygène Fitness" class="logo" />
-      <h1>Oxygène Fitness Andilly</h1>
-      <p>Votre salle de sport ouverte de 6h à 23h, 7j/7</p>
-      <nav>
-        <a href="#horaires">Horaires & accès</a>
-        <a href="#planning">Planning cours co</a>
-        <a href="#coachs">Coachs</a>
-        <a href="#tarifs">Tarifs</a>
-        <a href="#contact">Contact</a>
-      </nav>
+      <div class="brand">
+        <h1>Oxygène Fitness Andilly</h1>
+        <p>Votre salle de sport ouverte de 6h à 23h, 7j/7</p>
+      </div>
     </div>
+
+    <nav class="main-nav container">
+      <a href="#horaires">Horaires & accès</a>
+      <a href="#planning">Planning cours co</a>
+      <a href="#coachs">Coachs</a>
+      <a href="#tarifs">Tarifs</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </header>
 
-  <section id="horaires" class="container">
-    <h2>Horaires & Accès</h2>
-    <p>
-      <strong>Adresse :</strong> 10 Avenue des Cures, 95580 Andilly<br>
-      <strong>Horaires :</strong> 6h - 23h, 7 jours sur 7<br>
-      <strong>Téléphone :</strong> 01 39 59 15 48
-    </p>
-    <iframe src="https://www.google.com/maps?q=10+Avenue+des+Cures,+Andilly&output=embed"
-      width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-  </section>
+  <main>
+    <section id="horaires" class="container section">
+      <h2>Horaires & Accès</h2>
+      <p>
+        <strong>Adresse :</strong> 10 Avenue des Cures, 95580 Andilly<br />
+        <strong>Horaires :</strong> 6h - 23h, 7 jours sur 7<br />
+        <strong>Téléphone :</strong> 01 39 59 15 48
+      </p>
+      <iframe
+        src="https://www.google.com/maps?q=10+Avenue+des+Cures,+Andilly&output=embed"
+        width="100%"
+        height="260"
+        allowfullscreen=""
+        loading="lazy"
+      ></iframe>
+    </section>
 
-  <section id="planning" class="container">
-    <h2>Planning des cours collectifs</h2>
-    <img src="planning-cours-co.png" alt="Planning des cours collectifs Oxygène Fitness" style="width:100%;max-width:800px;display:block;margin:auto;">
-    <div style="text-align:center;margin-top:18px;">
-      <button class="btn-main" onclick="alert('Réservation en ligne bientôt disponible !')">Réserver un cours collectif</button>
-    </div>
-  </section>
-
-  <section id="coachs" class="container">
-    <h2>Nos Coachs</h2>
-    <div class="coach-list">
-      <div class="coach">
-        <img src="https://images.pexels.com/photos/1139825/pexels-photo-1139825.jpeg?auto=compress&w=300&q=80" alt="Romain coach Oxygène Fitness" />
-        <h3>Romain</h3>
-        <p>Boxe, Cross Training, Prépa physique</p>
-        <p>Coaching privé disponible</p>
+    <section id="planning" class="container section">
+      <h2>Planning des cours collectifs</h2>
+      <img
+        src="planning-cours-co.png"
+        alt="Planning des cours collectifs Oxygène Fitness"
+        class="preview-img"
+      />
+      <div class="center">
+        <button class="btn-main" data-action="open-modal" data-type="reservation">
+          Réserver un cours collectif
+        </button>
       </div>
-      <div class="coach">
-        <img src="https://images.pexels.com/photos/3768914/pexels-photo-3768914.jpeg?auto=compress&w=300&q=80" alt="Fanny coach Oxygène Fitness" />
-        <h3>Fanny</h3>
-        <p>Cardio, Pilates, Santé articulaire</p>
-        <p>Coaching privé disponible</p>
+    </section>
+
+    <section id="coachs" class="container section">
+      <h2>Nos Coachs</h2>
+      <div class="coach-list">
+        <div class="coach">
+          <img
+            src="https://images.pexels.com/photos/1139825/pexels-photo-1139825.jpeg?auto=compress&w=600&q=80"
+            alt="Romain coach Oxygène Fitness"
+          />
+          <h3>Romain</h3>
+          <p>Boxe, Cross Training, Prépa physique</p>
+          <p>Coaching privé disponible</p>
+        </div>
+
+        <div class="coach">
+          <img
+            src="https://images.pexels.com/photos/3768914/pexels-photo-3768914.jpeg?auto=compress&w=600&q=80"
+            alt="Fanny coach Oxygène Fitness"
+          />
+          <h3>Fanny</h3>
+          <p>Cardio, Pilates, Santé articulaire</p>
+          <p>Coaching privé disponible</p>
+        </div>
+
+        <div class="coach">
+          <img
+            src="https://images.pexels.com/photos/2261485/pexels-photo-2261485.jpeg?auto=compress&w=600&q=80"
+            alt="Kilian coach Oxygène Fitness"
+          />
+          <h3>Kilian</h3>
+          <p>Musculation, Circuit training</p>
+          <p>Coaching privé disponible</p>
+        </div>
       </div>
-      <div class="coach">
-        <img src="https://images.pexels.com/photos/2261485/pexels-photo-2261485.jpeg?auto=compress&w=300&q=80" alt="Kilian coach Oxygène Fitness" />
-        <h3>Kilian</h3>
-        <p>Musculation, Circuit training</p>
-        <p>Coaching privé disponible</p>
+    </section>
+
+    <section id="tarifs" class="container section">
+      <h2>Tarifs</h2>
+      <img src="tarifs.png" alt="Tarifs Oxygène Fitness" class="preview-img" />
+      <div class="center">
+        <button class="btn-main" data-action="open-modal" data-type="abonnement">
+          Prendre un abonnement
+        </button>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="tarifs" class="container">
-    <h2>Tarifs</h2>
-    <img src="tarifs.png" alt="Tarifs Oxygène Fitness" style="width:100%;max-width:800px;display:block;margin:auto;">
-    <div style="text-align:center;margin-top:18px;">
-      <button class="btn-main" onclick="alert('Souscription en ligne bientôt disponible !')">Prendre un abonnement</button>
-    </div>
-  </section>
+    <section id="contact" class="container section">
+      <h2>Contact & Réseaux</h2>
+      <p>Besoin d'informations ou envie de visiter la salle ? Contactez-nous !</p>
 
-  <section id="contact" class="container">
-    <h2>Contact & Réseaux</h2>
-    <p>Besoin d'informations ou envie de visiter la salle ? Contactez-nous !</p>
-    <form>
-      <label for="email">Votre email :</label>
-      <input type="email" id="email" name="email" required>
-      <label for="message">Message :</label>
-      <textarea id="message" name="message" required></textarea>
-      <button type="submit">Envoyer</button>
-    </form>
-    <div class="social-links">
-      <a href="https://www.instagram.com/" target="_blank" class="instagram">Instagram</a>
-      <a href="https://www.facebook.com/" target="_blank" class="facebook">Facebook</a>
-    </div>
-  </section>
+      <form id="contactForm" class="contact-form">
+        <label for="contact-name">Nom</label>
+        <input type="text" id="contact-name" name="name" placeholder="Votre nom" required />
 
-  <footer>
+        <label for="email">Votre email</label>
+        <input type="email" id="email" name="email" placeholder="ex: contact@mail.com" required />
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" placeholder="Votre message" required></textarea>
+
+        <button type="submit" class="btn-submit">Envoyer</button>
+      </form>
+
+      <div class="social-links">
+        <a href="https://www.instagram.com/" target="_blank" class="instagram">Instagram</a>
+        <a href="https://www.facebook.com/" target="_blank" class="facebook">Facebook</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
     <div class="container">
       <p>&copy; 2025 Oxygène Fitness Andilly. Tous droits réservés.</p>
     </div>
   </footer>
+
+  <!-- Modal (réservation / abonnement) -->
+  <div id="modalOverlay" class="modal-overlay" aria-hidden="true">
+    <div class="modal">
+      <button class="modal-close" aria-label="Fermer">✕</button>
+      <div id="modalContent">
+        <!-- Content injected by JS -->
+      </div>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
