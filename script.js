@@ -1,4 +1,4 @@
-// script.js - precise scroll, reveal, modal, lightbox, contact form, and hero-image animation kickoff
+// script.js - precise scroll, reveal, modal, lightbox, contact form, hero zoom
 document.addEventListener('DOMContentLoaded', () => {
   const header = document.querySelector('.hero-header') || document.querySelector('header');
   const navLinks = document.querySelectorAll('.main-nav a, .hero-nav a');
@@ -8,11 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Add slow zoom class to hero image (Ken Burns effect)
   const heroImage = document.getElementById('heroImage');
   if (heroImage) {
-    // start zoom after short delay for smoother effect
     setTimeout(() => heroImage.classList.add('zoom-in'), 250);
-    // Optional: loop zoom in/out by toggling classes (commented out by default)
-    // let zoomToggle = true;
-    // setInterval(() => { heroImage.classList.toggle('zoom-in'); zoomToggle = !zoomToggle; }, 12000);
   }
 
   // compute header height for scroll offset
@@ -20,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return header ? header.offsetHeight : 110;
   }
 
-  // smooth scroll with header offset
+  // smooth scroll with accurate header offset (click goes directly to section, no visual offset)
   navLinks.forEach(link => {
     link.addEventListener('click', function(e) {
       const href = this.getAttribute('href');
@@ -30,6 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (target) {
           const top = target.getBoundingClientRect().top + window.pageYOffset - getHeaderHeight() - 8;
           window.scrollTo({ top, behavior: 'smooth' });
+        } else {
+          // fallback to direct navigation if section not found
+          window.location.href = href;
         }
       }
     });
@@ -135,13 +134,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const h = getHeaderHeight();
     document.documentElement.style.setProperty('--header-height', `${h}px`);
   };
+  function getHeaderHeight() { return header ? header.offsetHeight : 110; }
   updateHeaderHeight();
   window.addEventListener('resize', updateHeaderHeight);
 
-  // close ESC
+  // Close ESC
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      closeModal(); closeLightbox();
-    }
+    if (e.key === 'Escape') { closeModal(); closeLightbox(); }
   });
 });
