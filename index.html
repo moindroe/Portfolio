@@ -12,7 +12,7 @@
 </head>
 <body>
   <!-- HERO header (image background) -->
-  <header class="hero-header">
+  <header class="hero-header" id="top">
     <div class="hero-media" aria-hidden="true">
       <img id="heroImage" class="hero-image" src="squat.png" alt="Personne s'entraînant dans la salle Oxygène Fitness" />
       <div class="hero-overlay" aria-hidden="true"></div>
@@ -24,10 +24,14 @@
         <h1>Oxygène Fitness</h1>
         <p class="subtitle">Andilly — Ouvert 6h à 23h, 7j/7</p>
       </div>
-      <div class="header-spacer"></div>
+
+      <!-- CTA visible sur le hero -->
+      <div class="hero-cta">
+        <button id="heroReserveBtn" class="btn-hero" aria-label="Réserver un cours">Réserver</button>
+      </div>
     </div>
 
-    <nav class="main-nav container hero-nav">
+    <nav class="main-nav container hero-nav" role="navigation" aria-label="Navigation principale">
       <a href="#horaires">Horaires & accès</a>
       <a href="#planning">Planning</a>
       <a href="#coachs">Coachs</a>
@@ -61,20 +65,37 @@
     <section id="coachs" class="container section reveal">
       <h2>Nos Coachs</h2>
       <div class="coach-list">
-        <div class="coach">
-          <img src="romain-coach.png" alt="Romain coach" loading="lazy" />
+        <div class="coach" tabindex="0" aria-label="Coach Romain - Boxe, Cross Training">
+          <div class="coach-photo">
+            <img src="romain-coach.png" alt="Romain coach" loading="lazy" />
+          </div>
           <h3>Romain</h3>
-          <p>Boxe, Cross Training, Prépa physique</p>
+          <p class="coach-role">Boxe, Cross Training</p>
+          <div class="coach-overlay" aria-hidden="true">
+            <p>Boxe • Cross Training • Prépa physique</p>
+          </div>
         </div>
-        <div class="coach">
-          <img src="fanny-coach.png" alt="Fanny coach" loading="lazy" />
+
+        <div class="coach" tabindex="0" aria-label="Coach Fanny - Cardio, Pilates">
+          <div class="coach-photo">
+            <img src="fanny-coach.png" alt="Fanny coach" loading="lazy" />
+          </div>
           <h3>Fanny</h3>
-          <p>Cardio, Pilates, Santé articulaire</p>
+          <p class="coach-role">Cardio, Pilates</p>
+          <div class="coach-overlay" aria-hidden="true">
+            <p>Cardio • Pilates • Santé articulaire</p>
+          </div>
         </div>
-        <div class="coach">
-          <img src="kilian-coach.png" alt="Kilian coach" loading="lazy" />
+
+        <div class="coach" tabindex="0" aria-label="Coach Kilian - Musculation, Circuit training">
+          <div class="coach-photo">
+            <img src="kilian-coach.png" alt="Kilian coach" loading="lazy" />
+          </div>
           <h3>Kilian</h3>
-          <p>Musculation, Circuit training</p>
+          <p class="coach-role">Musculation, Circuit</p>
+          <div class="coach-overlay" aria-hidden="true">
+            <p>Musculation • Circuit training • Coaching privé</p>
+          </div>
         </div>
       </div>
     </section>
@@ -123,22 +144,20 @@
       </div>
 
       <div class="footer-right">
-        <!-- Social icons placed in the footer. Instagram links to the handle you provided. -->
+        <!-- Only icons (no text) -->
         <div class="footer-socials" aria-label="Réseaux sociaux">
           <a class="social instagram" href="https://www.instagram.com/oxygene_fit_95" target="_blank" rel="noopener noreferrer" aria-label="Instagram Oxygène Fitness">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
               <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5z" stroke="none" fill="#fff" opacity="0"/>
               <path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10z" fill="#fff"/>
               <circle cx="17.5" cy="6.5" r="1.2" fill="#fff"/>
             </svg>
-            <span class="sr-only">Instagram</span>
           </a>
 
           <a class="social facebook" href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook Oxygène Fitness">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
               <path d="M22 12.07C22 6.48 17.52 2 11.93 2S2 6.48 2 12.07c0 4.99 3.66 9.13 8.44 9.92v-7.03H8.9v-2.9h1.54V9.8c0-1.52.9-2.36 2.28-2.36.66 0 1.35.12 1.35.12v1.49h-.76c-.75 0-.98.47-.98.95v1.15h1.66l-.27 2.9h-1.39v7.03C18.34 21.2 22 17.06 22 12.07z" fill="#fff"/>
             </svg>
-            <span class="sr-only">Facebook</span>
           </a>
         </div>
       </div>
@@ -147,7 +166,7 @@
 
   <!-- Modal (réservation / abonnement) -->
   <div id="modalOverlay" class="modal-overlay" aria-hidden="true">
-    <div class="modal">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
       <button class="modal-close" aria-label="Fermer">✕</button>
       <div id="modalContent"></div>
     </div>
@@ -160,6 +179,9 @@
       <img id="lightboxImg" src="" alt="Agrandissement" />
     </div>
   </div>
+
+  <!-- back to top -->
+  <button id="backToTop" class="back-to-top" aria-label="Retour en haut">↑</button>
 
   <script src="script.js"></script>
 </body>
