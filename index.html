@@ -14,7 +14,7 @@
   <!-- HERO header (image background) -->
   <header class="hero-header" id="top">
     <div class="hero-media" aria-hidden="true">
-      <img id="heroImage" class="hero-image" src="squat.png" alt="Personne s'entraînant dans la salle Oxygène Fitness" />
+      <img id="heroImage" class="hero-image" src="images/hero-image.jpg" alt="Personne s'entraînant dans la salle Oxygène Fitness" />
       <div class="hero-overlay" aria-hidden="true"></div>
     </div>
 
@@ -25,115 +25,55 @@
         <p class="subtitle">Andilly — Ouvert 6h à 23h, 7j/7</p>
       </div>
 
-      <!-- CTA visible sur le hero -->
+      <!-- CTA visible on the hero -->
       <div class="hero-cta">
-        <button id="heroReserveBtn" class="btn-hero" aria-label="Réserver un cours">Réserver</button>
+        <a class="btn-hero" href="planning.html">Réserver</a>
       </div>
     </div>
 
+    <!-- nav links now point to separate pages (one page per category) -->
     <nav class="main-nav container hero-nav" role="navigation" aria-label="Navigation principale">
-      <a href="#horaires">Horaires & accès</a>
-      <a href="#planning">Planning</a>
-      <a href="#coachs">Coachs</a>
-      <a href="#gallery">La salle</a>
-      <a href="#tarifs">Tarifs</a>
-      <a href="#contact">Contact</a>
+      <a href="horaires.html">Horaires & accès</a>
+      <a href="planning.html">Planning</a>
+      <a href="coachs.html">Coachs</a>
+      <a href="gallery.html">La salle</a>
+      <a href="tarifs.html">Tarifs</a>
+      <a href="contact.html">Contact</a>
     </nav>
   </header>
 
   <main>
-    <section id="horaires" class="container section reveal">
-      <h2>Horaires & Accès</h2>
-      <p>
-        <strong>Adresse :</strong> 10 Avenue des Cures, 95580 Andilly<br />
-        <strong>Horaires :</strong> 6h - 23h, 7 jours sur 7<br />
-        <strong>Téléphone :</strong> 01 39 59 15 48
-      </p>
-      <iframe
-        src="https://www.google.com/maps?q=10+Avenue+des+Cures,+Andilly&output=embed"
-        width="100%" height="260" allowfullscreen="" loading="lazy"></iframe>
-    </section>
-
-    <section id="planning" class="container section reveal">
-      <h2>Planning des cours collectifs</h2>
-      <img src="planning-cours-co.png" alt="Planning des cours collectifs Oxygène Fitness" class="preview-img" loading="lazy" />
-      <div class="center">
-        <button class="btn-main" data-action="open-modal" data-type="reservation">Réserver un cours collectif</button>
+    <!-- Keep short summaries on home + links to pages -->
+    <section id="intro" class="container section reveal">
+      <h2>Bienvenue</h2>
+      <p>Oxygène Fitness Andilly — Salle moderne, coaching, cours collectifs et espaces cardio & musculation.
+         Utilise les liens ci‑dessous pour accéder aux pages détaillées.</p>
+      <div class="home-links">
+        <a class="home-card" href="planning.html">Voir le planning</a>
+        <a class="home-card" href="tarifs.html">Voir les tarifs</a>
+        <a class="home-card" href="coachs.html">Rencontrer les coachs</a>
       </div>
     </section>
 
-    <section id="coachs" class="container section reveal">
-      <h2>Nos Coachs</h2>
-      <div class="coach-list">
-        <div class="coach" tabindex="0" aria-label="Coach Romain - Boxe, Cross Training">
-          <div class="coach-photo">
-            <img src="romain-coach.png" alt="Romain coach" loading="lazy" />
-          </div>
-          <h3>Romain</h3>
-          <p class="coach-role">Boxe, Cross Training</p>
-          <div class="coach-overlay" aria-hidden="true">
-            <p>Boxe • Cross Training • Prépa physique</p>
-          </div>
-        </div>
-
-        <div class="coach" tabindex="0" aria-label="Coach Fanny - Cardio, Pilates">
-          <div class="coach-photo">
-            <img src="fanny-coach.png" alt="Fanny coach" loading="lazy" />
-          </div>
-          <h3>Fanny</h3>
-          <p class="coach-role">Cardio, Pilates</p>
-          <div class="coach-overlay" aria-hidden="true">
-            <p>Cardio • Pilates • Santé articulaire</p>
-          </div>
-        </div>
-
-        <div class="coach" tabindex="0" aria-label="Coach Kilian - Musculation, Circuit training">
-          <div class="coach-photo">
-            <img src="kilian-coach.png" alt="Kilian coach" loading="lazy" />
-          </div>
-          <h3>Kilian</h3>
-          <p class="coach-role">Musculation, Circuit</p>
-          <div class="coach-overlay" aria-hidden="true">
-            <p>Musculation • Circuit training • Coaching privé</p>
-          </div>
-        </div>
-      </div>
+    <section id="highlights" class="container section reveal">
+      <h2>Nos atouts</h2>
+      <ul>
+        <li>Équipement récent et espaces distincts cardio / musculation</li>
+        <li>Cours collectifs variés (Biking, Cross, Pilates, etc.)</li>
+        <li>Coachs diplômés et coaching privé</li>
+      </ul>
     </section>
 
-    <section id="gallery" class="container section reveal">
-      <h2>La salle — Galerie</h2>
-      <p>Quelques photos de la salle pour vous donner envie. Clique sur une image pour l’agrandir.</p>
+    <section id="mini-gallery" class="container section reveal">
+      <h2>La salle — Aperçu</h2>
       <div class="gallery-grid">
         <img src="muscu.png" alt="Espace Musculation" class="gallery-item" loading="lazy" />
         <img src="cardio.png" alt="Espace cardio" class="gallery-item" loading="lazy" />
         <img src="vestiaires.png" alt="Nos vestiaires" class="gallery-item" loading="lazy" />
       </div>
-    </section>
-
-    <section id="tarifs" class="container section reveal">
-      <h2>Tarifs</h2>
-      <img src="tarifs.png" alt="Tarifs Oxygène Fitness" class="preview-img" loading="lazy" />
-      <div class="center">
-        <button class="btn-main" data-action="open-modal" data-type="abonnement">Prendre un abonnement</button>
+      <div class="center" style="margin-top:12px;">
+        <a class="btn-main" href="gallery.html">Voir la galerie complète</a>
       </div>
-    </section>
-
-    <section id="contact" class="container section reveal">
-      <h2>Contact & Réseaux</h2>
-      <p>Besoin d'informations ou envie de visiter la salle ? Contactez-nous !</p>
-
-      <form id="contactForm" class="contact-form">
-        <label for="contact-name">Nom</label>
-        <input type="text" id="contact-name" name="name" placeholder="Votre nom" required />
-
-        <label for="email">Votre email</label>
-        <input type="email" id="email" name="email" placeholder="ex: contact@mail.com" required />
-
-        <label for="message">Message</label>
-        <textarea id="message" name="message" rows="5" placeholder="Votre message" required></textarea>
-
-        <button type="submit" class="btn-submit">Envoyer</button>
-      </form>
     </section>
   </main>
 
@@ -144,7 +84,7 @@
       </div>
 
       <div class="footer-right">
-        <!-- Only icons (no text) -->
+        <!-- Only icons (no text). Instagram link to oxygene_fit_95 -->
         <div class="footer-socials" aria-label="Réseaux sociaux">
           <a class="social instagram" href="https://www.instagram.com/oxygene_fit_95" target="_blank" rel="noopener noreferrer" aria-label="Instagram Oxygène Fitness">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
@@ -163,22 +103,6 @@
       </div>
     </div>
   </footer>
-
-  <!-- Modal (réservation / abonnement) -->
-  <div id="modalOverlay" class="modal-overlay" aria-hidden="true">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <button class="modal-close" aria-label="Fermer">✕</button>
-      <div id="modalContent"></div>
-    </div>
-  </div>
-
-  <!-- Lightbox modal for gallery -->
-  <div id="lightbox" class="lightbox" aria-hidden="true">
-    <div class="lightbox-inner">
-      <button class="lightbox-close" aria-label="Fermer">✕</button>
-      <img id="lightboxImg" src="" alt="Agrandissement" />
-    </div>
-  </div>
 
   <!-- back to top -->
   <button id="backToTop" class="back-to-top" aria-label="Retour en haut">↑</button>
