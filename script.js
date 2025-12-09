@@ -1,62 +1,75 @@
-// script.js - precise scroll, reveal, modal, lightbox, contact form, hero zoom, back-to-top, hero CTA
+// script.js - anchor precision, reveal, modal, lightbox, hero zoom, back-to-top
 document.addEventListener('DOMContentLoaded', () => {
   const header = document.querySelector('.hero-header') || document.querySelector('header');
   const navLinks = document.querySelectorAll('.main-nav a, .hero-nav a');
-  const sections = document.querySelectorAll('main section[id]');
+  const sections = document.querySelectorAll('main section[id], main section');
   const reveals = document.querySelectorAll('.reveal');
 
-  // Hero zoom
+  // Hero zoom (Ken Burns)
   const heroImage = document.getElementById('heroImage');
   if (heroImage) setTimeout(() => heroImage.classList.add('zoom-in'), 250);
 
-  // compute header height for scroll offset
+  // compute header height
   function getHeaderHeight() { return header ? header.offsetHeight : 110; }
 
-  // smooth scroll with accurate header offset
+  // Set CSS var and section scroll-margin-top (so native anchor jumps land correctly)
+  function updateHeaderVarAndMargin() {
+    const h = getHeaderHeight();
+    document.documentElement.style.setProperty('--header-height', `${h}px`);
+    // also set scrollMarginTop for every section for browsers that use it
+    document.querySelectorAll('.section').forEach(sec => {
+      sec.style.scrollMarginTop = `${h + 16}px`;
+    });
+  }
+  updateHeaderVarAndMargin();
+  window.addEventListener('resize', updateHeaderVarAndMargin);
+
+  // Smooth scroll for nav links (pages link to separate pages - handle same-page anchor or fallback)
   navLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
+    link.addEventListener('click', function(event) {
       const href = this.getAttribute('href');
+      // If link is same-page anchor (starts with '#') -> smooth scroll with offset
       if (href && href.startsWith('#')) {
-        e.preventDefault();
+        event.preventDefault();
         const target = document.querySelector(href);
         if (target) {
           const top = target.getBoundingClientRect().top + window.pageYOffset - getHeaderHeight() - 8;
           window.scrollTo({ top, behavior: 'smooth' });
-        } else {
-          window.location.href = href;
         }
       }
+      // If link points to a page with hash (e.g. planning.html#...), default navigation will happen.
+      // For links to the same page name (planning.html when already on planning.html), allow reload anchor processing.
     });
   });
 
-  // Hero CTA -> planning
-  const heroReserveBtn = document.getElementById('heroReserveBtn');
-  if (heroReserveBtn) {
-    heroReserveBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const target = document.querySelector('#planning');
+  // If URL has a hash on load (e.g. page.html#section), scroll with header offset
+  if (window.location.hash) {
+    const id = window.location.hash;
+    setTimeout(() => {
+      const target = document.querySelector(id);
       if (target) {
         const top = target.getBoundingClientRect().top + window.pageYOffset - getHeaderHeight() - 8;
         window.scrollTo({ top, behavior: 'smooth' });
       }
-    });
+    }, 60); // small delay to allow layout
   }
 
-  // IntersectionObserver for active nav
+  // IntersectionObserver for active nav (highlights link on view)
   const sectionObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
+      if (!entry.target.id) return;
       const id = entry.target.id;
-      const activeLink = document.querySelector(`.main-nav a[href="#${id}"], .hero-nav a[href="#${id}"]`);
+      const activeLink = document.querySelector(`.main-nav a[href$="${id}"], .hero-nav a[href$="${id}"]`);
       if (entry.isIntersecting) {
         document.querySelectorAll('.main-nav a, .hero-nav a').forEach(a => a.classList.remove('active'));
         if (activeLink) activeLink.classList.add('active');
       }
     });
-  }, { root: null, threshold: 0.18 });
+  }, { root: null, threshold: 0.25 });
 
   sections.forEach(s => sectionObserver.observe(s));
 
-  // Reveal on scroll
+  // Reveal animations
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) entry.target.classList.add('in-view');
@@ -64,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold: 0.12 });
   reveals.forEach(r => revealObserver.observe(r));
 
-  // Modal handling (reservation / abonnement)
+  // Modal handling
   const modalOverlay = document.getElementById('modalOverlay');
   const modalContent = document.getElementById('modalContent');
   const modalClose = document.querySelector('.modal-close');
@@ -74,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
     modalContent.innerHTML = '';
     if (type === 'reservation') {
       modalContent.innerHTML = `<h3 id="modalTitle">Réserver un cours collectif</h3>
-        <p>Pour réserver maintenant, contacte-nous au <strong>01 39 59 15 48</strong> ou passe à l'accueil. Réservation en ligne bientôt disponible.</p>
+        <p>Pour réserver maintenant, contacte-nous au <strong>01 39 59 15 48</strong> ou passe à l'accueil.</p>
         <div style="text-align:right;margin-top:12px;"><button class="btn-main" id="closeModalBtn">Fermer</button></div>`;
     } else {
       modalContent.innerHTML = `<h3 id="modalTitle">Prendre un abonnement</h3>
@@ -87,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   function closeModal() {
     modalOverlay.classList.remove('active');
-    modalContent.innerHTML = '';
+    if (modalContent) modalContent.innerHTML = '';
   }
   document.querySelectorAll('[data-action="open-modal"]').forEach(btn => {
     btn.addEventListener('click', () => openModal(btn.getAttribute('data-type')));
@@ -95,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (modalClose) modalClose.addEventListener('click', closeModal);
   if (modalOverlay) modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) closeModal(); });
 
-  // Contact form
+  // Contact form behaviour (simple)
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
@@ -124,7 +137,6 @@ document.addEventListener('DOMContentLoaded', () => {
       lightbox.classList.add('active');
     });
   });
-
   function closeLightbox() {
     if (!lightbox) return;
     lightbox.classList.remove('active');
@@ -133,26 +145,14 @@ document.addEventListener('DOMContentLoaded', () => {
   if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
   if (lightbox) lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
 
-  // back-to-top button
+  // Back to top button
   const backToTop = document.getElementById('backToTop');
   window.addEventListener('scroll', () => {
     if (!backToTop) return;
     if (window.pageYOffset > window.innerHeight / 2) backToTop.style.display = 'flex';
     else backToTop.style.display = 'none';
   });
-  if (backToTop) {
-    backToTop.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-
-  // Update CSS var for header height for accurate anchors
-  const updateHeaderHeight = () => {
-    const h = getHeaderHeight();
-    document.documentElement.style.setProperty('--header-height', `${h}px`);
-  };
-  updateHeaderHeight();
-  window.addEventListener('resize', updateHeaderHeight);
+  if (backToTop) backToTop.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
   // close ESC
   document.addEventListener('keydown', (e) => {
